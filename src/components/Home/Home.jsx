@@ -1,0 +1,33 @@
+import React from 'react'
+import LatestProducts from '../LatestProducts/LatestProducts'
+const latestProducts = fetch("http://localhost:3000/products").then((res) => res.json())
+
+const Home = () => {
+    //https://images.unsplash.com/photo-1578575437130-527eed3abbec?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070
+    return (
+        <>
+            <div
+                className="hero min-h-screen"
+                style={{
+                    backgroundImage:
+                        "url(https://images.unsplash.com/photo-1700114339471-9e90a155d4b7?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070",
+                }}
+            >
+                <div className="hero-overlay"></div>
+                <div className="hero-content text-neutral-content text-center">
+                    <div className="max-w-md">
+                        <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
+                        <p className="mb-5">
+                            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
+                            quasi. In deleniti eaque aut repudiandae et a id nisi.
+                        </p>
+                        <button className="btn btn-primary">Get Started</button>
+                    </div>
+                </div>
+            </div>
+            <LatestProducts latestProducts={latestProducts} />
+        </>
+    )
+}
+
+export default Home
