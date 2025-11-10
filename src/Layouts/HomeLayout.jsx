@@ -5,7 +5,7 @@ import Footer from '../components/Footer/Footer'
 
 const HomeLayout = () => {
     return (
-        <div>
+        <div className='nunito-font'>
             <Navbar />
             <Outlet></Outlet>
             <Footer />

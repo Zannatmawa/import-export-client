@@ -1,11 +1,13 @@
 import React, { use } from 'react'
 import { Link } from 'react-router'
 import { AuthContext } from '../contexts/AuthContext'
+import { FaRegUser } from "react-icons/fa";
+
 
 const Navbar = () => {
     const { user, logOut } = use(AuthContext)
-
     console.log(user)
+
     const handleLogOutUser = () => {
         logOut()
             .then()
@@ -43,9 +45,18 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
+
+
                 {
-                    user ? <Link onClick={handleLogOutUser} to="/" className="btn btn-primary">Sign Out</Link> :
-                        <Link to="/login" className="btn btn-primary">Login</Link>
+                    user ? <>
+                        {/* <img src={user.photoURL} alt="" /> */}
+                        <FaRegUser />
+                        <Link onClick={handleLogOutUser} to="/login" className="btn btn-primary ml-5">Sign Out</Link>
+                    </> :
+                        <>
+                            {/* <FaRegUser /> */}
+                            <Link to="/login" className="btn btn-primary">Login</Link>
+                        </>
                 }
 
                 {/* <Link to="/register" className="btn btn-primary">Register</Link> */}
