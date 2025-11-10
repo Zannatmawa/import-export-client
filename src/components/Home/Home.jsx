@@ -1,5 +1,6 @@
 import React from 'react'
 import LatestProducts from '../LatestProducts/LatestProducts'
+import AllProducts from '../AllProducts/AllProducts'
 const latestProducts = fetch("http://localhost:3000/products").then((res) => res.json())
 
 const Home = () => {
@@ -26,6 +27,7 @@ const Home = () => {
                 </div>
             </div>
             <LatestProducts latestProducts={latestProducts} />
+            {/* <AllProducts allProducts={latestProducts} /> */}
         </>
     )
 }
