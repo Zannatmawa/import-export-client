@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router';
 
 const Register = () => {
     const { createUser, signinWithGoogle, updateUser, user, setUser } = use(AuthContext);
-    const { error, setError } = useState('')
+    const { error, setError } = useState("")
     const [loggedIn, setLoggedIn] = useState(false)
     console.log(loggedIn)
     const navigate = useNavigate();
@@ -52,11 +52,12 @@ const Register = () => {
         createUser(email, password)
             .then((result) => {
                 const loggedUser = result.user;
-                const passwordPattern = /^.{6,}$/;
-                if (!passwordPattern) {
-                    setError("Password should be at least 6 character!");
-                    return;
-                }
+                // const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+                // ;
+                // if (!passwordPattern) {
+                //     setError("Password should be at least 6 character!");
+                //     return;
+                // }
                 updateUser({ displayName: name, photoURL: photo })
                     .then(() => {
                         setUser({ ...user, displayName: name, photoURL: photo })
@@ -112,9 +113,10 @@ const Register = () => {
                             <label className="label">Password</label>
                             <input name='password' type="password" className="input" placeholder="Password" />
                             <div><a className="link link-hover">Forgot password?</a></div>
+                            {error && <p className='text-red-600'>{error}</p>}
                             <button type='submit' className="btn btn-neutral mt-4">Register</button>
                         </fieldset>
-                        {error && <p className='text-red-600'>{error}</p>}
+
                     </form>
                     {/* Google */}
                     <button onClick={handleGoogleSignIn} className="btn bg-white text-black border-[#e5e5e5]">
