@@ -35,6 +35,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/my-imports",
+        loader: () => fetch('http://localhost:3000/imports'),
         element: <MyImports />
       },
       {
