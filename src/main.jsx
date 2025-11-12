@@ -14,6 +14,8 @@ import Login from './components/Login/Login.jsx';
 import Register from './components/Register/Register.jsx';
 import AuthProvider from './components/contexts/AuthProvider.jsx';
 import ProductDetails from './components/ProductDetails/ProductDetails.jsx';
+import PrivateRoute from './components/contexts/PrivateRoute/PrivateRoute.jsx';
+import AuthLayout from './Layouts/AuthLayout.jsx';
 
 const router = createBrowserRouter([
   {
@@ -31,30 +33,37 @@ const router = createBrowserRouter([
       },
       {
         path: "/my-exports",
-        element: <MyExports />
+        element: <PrivateRoute><MyExports /></PrivateRoute>
       },
       {
         path: "/my-imports",
         loader: () => fetch('http://localhost:3000/imports'),
-        element: <MyImports />
+        element: <PrivateRoute><MyImports /></PrivateRoute>
       },
       {
         path: "/add-exports",
-        element: <AddExports />
+        element: <PrivateRoute> <AddExports /></PrivateRoute>
       },
-      {
-        path: "/login",
-        element: <Login />
-      },
-      {
-        path: "/register",
-        element: <Register />
-      },
+
       {
         path: "/productDetails/:id",
         loader: ({ params }) => fetch(`http://localhost:3000/products/${params.id}`),
-        element: <ProductDetails />
+        element: <PrivateRoute><ProductDetails /></PrivateRoute>
       }
+
+    ]
+  },
+  {
+    path: "/auth",
+    element: <AuthLayout></AuthLayout>,
+    children: [{
+      path: "/auth/login",
+      element: <Login />
+    },
+    {
+      path: "/auth/register",
+      element: <Register />
+    }
 
     ]
   },

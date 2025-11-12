@@ -1,28 +1,42 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, useLoaderData } from 'react-router'
 import Swal from 'sweetalert2'
 
 const MyImports = () => {
     const importedProducts = useLoaderData()
+    const [imports, setImports] = useState([]);
+    const { _id } = importedProducts;
+    console.log(imports)
 
-    const handleRemove = () => {
-        Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted.",
-                    icon: "success"
-                });
-            }
-        });
+    const handleRemove = (id) => {
+        fetch(`http://localhost:3000/imports/${id}`, {
+            method: "DELETE",
+            headers: {
+                'content-type': 'application/json'
+            },
+        })
+            .then(res => res.json())
+            .then(data => {
+                setImports(data)
+            })
+        alert("deleted")
+        // Swal.fire({
+        //     title: "Are you sure?",
+        //     text: "You won't be able to revert this!",
+        //     icon: "warning",
+        //     showCancelButton: true,
+        //     confirmButtonColor: "#3085d6",
+        //     cancelButtonColor: "#d33",
+        //     confirmButtonText: "Yes, delete it!"
+        // }).then((result) => {
+        //     if (result.isConfirmed) {
+        //         Swal.fire({
+        //             title: "Deleted!",
+        //             text: "Your file has been deleted.",
+        //             icon: "success"
+        //         });
+        //     }
+        // });
     }
 
     return (
@@ -42,7 +56,7 @@ const MyImports = () => {
                     </tr>
                 </thead>
                 {
-                    importedProducts.map((product) => <tbody>
+                    importedProducts.map((product, index) => <tbody key={index}>
                         {/* row 1 */}
                         <tr>
                             <td>
@@ -65,7 +79,7 @@ const MyImports = () => {
                             <td>{product.available_quantity} </td>
                             <td>{product.imported_quantity} </td>
                             <th>
-                                <button onClick={handleRemove} className="btn btn-ghost btn-sm">Remove</button>
+                                <button onClick={() => handleRemove(product._id)} className="btn btn-ghost btn-sm">Remove</button>
                             </th>
                             <th>
                                 <Link to={`/productDetails/${product._id}`} className="btn btn-primary btn-sm"> Details</Link>

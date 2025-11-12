@@ -6,8 +6,6 @@ import { FaRegUser } from "react-icons/fa";
 
 const Navbar = () => {
     const { user, logOut } = use(AuthContext)
-
-
     const handleLogOutUser = () => {
         logOut()
             .then()
@@ -49,13 +47,16 @@ const Navbar = () => {
 
                 {
                     user ? <>
-                        {/* <img src={user.photoURL} alt="" /> */}
-                        <FaRegUser />
-                        <Link onClick={handleLogOutUser} to="/login" className="btn btn-primary ml-5">Sign Out</Link>
+                        <div className='bg-base-600 h-10 rounded-full w-10'>
+                            <img src={user?.photoURL} alt="" />
+                            <h1>{user.displayName}</h1>
+
+                        </div>
+                        <Link onClick={handleLogOutUser} to="/auth/login" className="btn btn-primary ml-5">Sign Out</Link>
                     </> :
                         <>
-                            {/* <FaRegUser /> */}
-                            <Link to="/login" className="btn btn-primary">Login</Link>
+                            <FaRegUser />
+                            <Link to="/auth/login" className="btn btn-primary">Login</Link>
                         </>
                 }
 
