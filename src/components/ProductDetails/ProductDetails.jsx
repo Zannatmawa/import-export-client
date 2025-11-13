@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 const ProductDetails = () => {
     const products = useLoaderData()
     const importModalRef = useRef(null)
-    const { _id: productId, product_name, price, origin_country, rating, available_quantity, created_at } = products;
+    const { _id: productId, product_name, product_image, price, origin_country, rating, available_quantity, created_at } = products;
     const { user } = use(AuthContext)
     const handleImportModalOpen = () => {
         importModalRef.current.showModal()
@@ -16,7 +16,7 @@ const ProductDetails = () => {
         const name = e.target.name.value;
         const email = e.target.email.value;
         const quantity = e.target.quantity.value;
-        console.log(productId, name, email, quantity);
+        // console.log(productId, name, email, quantity);
 
         const newImportItems = {
             product: productId,
@@ -40,28 +40,28 @@ const ProductDetails = () => {
             .then(data => {
                 console.log(data)
             })
-        Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Your work has been saved",
-            showConfirmButton: false,
-            timer: 1500
-        });
-        console.log(newImportItems)
+        // Swal.fire({
+        //     position: "top-end",
+        //     icon: "success",
+        //     title: "Your work has been saved",
+        //     showConfirmButton: false,
+        //     timer: 1500
+        // });
+        // console.log(newImportItems)
     }
     return (
         <>
             <div className=' p-10 flex  justify-around'>
                 <figure>
-                    <img className='md:-w-[600px] lg:w-[600px] w-[350px] rounded-lg'
-                        src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+                    <img className='md:-w-[500px] lg:w-[500px] w-[350px] rounded-lg'
+                        src={product_image}
                         alt="Shoes" />
-                    <div className='card bg-base-100  shadow-sm lg:w-[600px] w-[350px] md:w-[600px]  mt-4'>
+                    {/* <img className='md:-w-[600px] lg:w-[600px] w-[350px] rounded-lg'
+                        src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+                        alt="Shoes" /> */}
 
-                        <div className='card-body'>
-
-                            <p>Experience premium quality and performance with the {product_name}. Designed with attention to detail, this product combines durability, modern design, and exceptional functionality to meet your everyday needs.  Whether you’re at home, work, or on the go, the {product_name} ensures convenience and reliability. <br /> It’s the perfect choice for anyone who values comfort, efficiency, and style in one package.</p>
-                        </div>
+                    <div className='card-body shadow-sm lg:w-[600px] w-[350px] md:w-[600px]'>
+                        <p>Experience premium quality and performance with the {product_name}. Designed with attention to detail, this product combines durability, modern design, and exceptional functionality to meet your everyday needs.  Whether you’re at home, work, or on the go, the {product_name} ensures convenience and reliability. <br /> It’s the perfect choice for anyone who values comfort, efficiency, and style in one package.</p>
                     </div>
 
                 </figure>

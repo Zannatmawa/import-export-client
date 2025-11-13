@@ -32,6 +32,7 @@ const Navbar = () => {
                     <ul
                         tabIndex="-1"
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                        <h1>{user?.displayName}</h1>
                         {links}
                     </ul>
                 </div>
@@ -48,9 +49,7 @@ const Navbar = () => {
                 {
                     user ? <>
                         <div className='bg-base-600 h-10 rounded-full w-10'>
-                            <img src={user?.photoURL} alt="" />
-                            <h1>{user.displayName}</h1>
-
+                            <img className='rounded-full' src={user?.photoURL} alt="" />
                         </div>
                         <Link onClick={handleLogOutUser} to="/auth/login" className="btn btn-primary ml-5">Sign Out</Link>
                     </> :
