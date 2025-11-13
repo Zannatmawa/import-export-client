@@ -55,7 +55,7 @@ const MyImports = () => {
 
     return (
         <div className="overflow-x-auto">
-            {imports.length}
+            <h6>Total:{imports.length}</h6>
             <table className="table">
                 {/* head */}
                 <thead>
