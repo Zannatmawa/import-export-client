@@ -7,7 +7,7 @@ const PrivateRoute = ({ children }) => {
     // const navigate = useNavigate()
 
     if (user && user?.email) {
-        return { children }
+        return [children]
     }
     else {
         return <Navigate to="/auth/login"></Navigate>

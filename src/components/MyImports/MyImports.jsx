@@ -1,13 +1,27 @@
-import React, { useState } from 'react'
+import React, { use, useEffect, useState } from 'react'
 import { Link, useLoaderData } from 'react-router'
 import Swal from 'sweetalert2'
+import { AuthContext } from '../contexts/AuthContext'
 
 const MyImports = () => {
+    const { user } = use(AuthContext)
     const importedProducts = useLoaderData()
     const [imports, setImports] = useState([]);
+    console.log(imports)
     const { _id } = importedProducts;
     console.log(imports)
 
+    useEffect(() => {
+
+        if (user?.email) {
+            fetch(`http://localhost:3000/imports?email=${user.email}`)
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    setImports(data)
+                })
+        }
+    }, [user?.email])
     const handleRemove = (id) => {
         fetch(`http://localhost:3000/imports/${id}`, {
             method: "DELETE",
@@ -41,6 +55,7 @@ const MyImports = () => {
 
     return (
         <div className="overflow-x-auto">
+            {imports.length}
             <table className="table">
                 {/* head */}
                 <thead>
@@ -56,7 +71,7 @@ const MyImports = () => {
                     </tr>
                 </thead>
                 {
-                    importedProducts.map((product, index) => <tbody key={index}>
+                    imports.map((product, index) => <tbody key={index}>
                         {/* row 1 */}
                         <tr>
                             <td>

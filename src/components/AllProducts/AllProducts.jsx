@@ -5,7 +5,7 @@ import Products from '../Products/Products'
 const AllProducts = () => {
     // const products = use(allProducts)
     const products = useLoaderData()
-    console.log(products)
+    // console.log(products)
     return (
         <div className='grid gap-5 grid-cols-1 lg:grid-cols-3 md:grid-cols-2 m-5'>
             {
