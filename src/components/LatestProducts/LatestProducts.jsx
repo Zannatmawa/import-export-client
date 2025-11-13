@@ -6,9 +6,9 @@ const LatestProducts = ({ latestProducts }) => {
     // console.log(products)
     //.sort({ created_at: -1 })
     return (
-        <div className='grid  gap-5 grid-cols-1 lg:grid-cols-3 md:grid-cols-2 bg-amber-600'>
+        <div className='grid  gap-5 grid-cols-1 lg:grid-cols-3 md:grid-cols-2 bg-gray-50 mb-25'>
             {
-                products.slice(0, 6).map((product, index) =>
+                products.sort((a, b) => b.created_at - a.created_at).slice(0, 6).map((product, index) =>
                     <Products key={index} product={product} />
                 )
             }

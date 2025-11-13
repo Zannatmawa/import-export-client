@@ -1,4 +1,4 @@
-import { use, useRef } from 'react';
+import { use, useRef, useState } from 'react';
 import { useLoaderData } from 'react-router'
 import { AuthContext } from '../contexts/AuthContext';
 import Swal from 'sweetalert2';
@@ -8,6 +8,7 @@ const ProductDetails = () => {
     const importModalRef = useRef(null)
     const { _id: productId, product_name, product_image, price, origin_country, rating, available_quantity, created_at } = products;
     const { user } = use(AuthContext)
+    const { btn, setBtn } = useState(false)
     const handleImportModalOpen = () => {
         importModalRef.current.showModal()
     }
@@ -18,9 +19,14 @@ const ProductDetails = () => {
         const quantity = e.target.quantity.value;
         // console.log(productId, name, email, quantity);
 
+        if (available_quantity < quantity) {
+            alert("Not availble")
+            setBtn(true)
+        }
         const newImportItems = {
             product: productId,
             product_name: product_name,
+            product_image: product_image,
             price: price,
             rating: rating,
             origin_country: origin_country,
@@ -40,42 +46,31 @@ const ProductDetails = () => {
             .then(data => {
                 console.log(data)
             })
-        // Swal.fire({
-        //     position: "top-end",
-        //     icon: "success",
-        //     title: "Your work has been saved",
-        //     showConfirmButton: false,
-        //     timer: 1500
-        // });
-        // console.log(newImportItems)
+        alert("Imported successfully!")
+        console.log(newImportItems)
     }
     return (
         <>
-            <div className=' p-10 flex  justify-around'>
+            <div className='w-11/13 mx-auto lg:p-10 md:p-10 mt-5 flex justify-between md:justify-around  lg:justify-around flex-col lg:flex-row md:flex-row'>
                 <figure>
                     <img className='md:-w-[500px] lg:w-[500px] w-[350px] rounded-lg'
                         src={product_image}
                         alt="Shoes" />
-                    {/* <img className='md:-w-[600px] lg:w-[600px] w-[350px] rounded-lg'
-                        src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                        alt="Shoes" /> */}
-
-                    <div className='card-body shadow-sm lg:w-[600px] w-[350px] md:w-[600px]'>
-                        <p>Experience premium quality and performance with the {product_name}. Designed with attention to detail, this product combines durability, modern design, and exceptional functionality to meet your everyday needs.  Whether you’re at home, work, or on the go, the {product_name} ensures convenience and reliability. <br /> It’s the perfect choice for anyone who values comfort, efficiency, and style in one package.</p>
-                    </div>
-
                 </figure>
-                <div className="card bg-base-300  shadow-sm lg:w-[600px] w-[350px] md:w-[600px]">
+                <div className="rounded-lg bg-base-300 lg:my-0 my-10   shadow-sm lg:w-[500px] w-[350px] md:w-[600px]">
                     <div className="card-body">
-                        <h2 className="card-title text-3xl">{product_name}</h2>
-                        <h2 className="card-title">Origin Country:{origin_country}</h2>
-                        <h2 className="card-title">Rating:{rating}</h2>
-                        <h2 className="card-title">Price:{price}</h2>
+                        <h2 className="card-title text-3xl mb-2">{product_name}</h2>
+                        <h2 className="card-title mb-2">Origin Country:{origin_country}</h2>
+                        <div className="badge badge-lg badge-outline badge-primary mb-2">
+                            {rating}
+                        </div>
+                        <h2 className="card-title mb-2">Price:{price}</h2>
                         <h2 className="card-title">Available Quantity:{available_quantity}</h2>
-                        <h2 className="card-title">Date:{created_at}</h2>
+                        <h2 className='text-2xl font-bold text-[#0A4679] mt-10'>Products Details</h2>
+                        <p className='lg:text-sm md:text-sm text-lg text-justify'>Experience premium quality and performance with the {product_name}. Designed with attention to detail, this product combines durability, modern design, and exceptional functionality to meet your everyday needs.  Whether you’re at home, work, or on the go, the {product_name} ensures convenience and reliability. <br /> It’s the perfect choice for anyone who values comfort, efficiency, and style in one package.</p>
+                        {/* <h2 className="card-title">Date:{created_at}</h2> */}
                     </div>
-                    <button onClick={handleImportModalOpen} className='btn btn-primary'>Import Now!</button>
-                    {/* Open the modal using document.getElementById('ID').showModal() method */}
+                    <button onClick={handleImportModalOpen} className='btn btn-primary w-full'>Import Now!</button>
                     <dialog ref={importModalRef} className="modal modal-bottom sm:modal-middle">
                         <div className="modal-box">
                             <h3 className="font-bold text-lg">Import Product!</h3>
@@ -91,7 +86,7 @@ const ProductDetails = () => {
                                     {/* password */}
                                     <label className="label">Quantity</label>
                                     <input name='quantity' type="text" className="input w-full" placeholder="add quantity" />
-                                    <button type='submit' className="btn btn-neutral mt-4">Add to Import</button>
+                                    <button disabled={btn} type='submit' className="btn btn-neutral mt-4 ">{btn ? "Disabled" : "Import Now"}</button>
 
                                 </fieldset>
                             </form>

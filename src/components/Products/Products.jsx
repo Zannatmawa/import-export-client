@@ -16,8 +16,10 @@ const Products = ({ product }) => {
                             alt="Shoes"
                             className="rounded-xl" />
                     </figure>
-                    <p className="font-bold text-md">{product_name}</p>
-                    <p className="font-bold text-md">{price}</p>
+                    <div className='flex justify-between mb-5'>
+                        <p className="font-bold text-md">{product_name}</p>
+                        <p className="font-bold text-md">{price}</p>
+                    </div>
                     <div className='flex'>
                         <div className="badge badge-outline badge-primary mr-1">{origin_country}</div>
                         <div className="badge badge-outline badge-primary mr-1">{rating}</div>
