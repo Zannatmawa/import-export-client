@@ -12,7 +12,6 @@ const MyImports = () => {
     console.log(imports)
 
     useEffect(() => {
-
         if (user?.email) {
             fetch(`http://localhost:3000/imports?email=${user.email}`)
                 .then(res => res.json())

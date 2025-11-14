@@ -45,3 +45,6 @@ const Products = ({ product }) => {
 }
 
 export default Products
+
+
+

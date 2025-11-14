@@ -39,6 +39,17 @@ const AddExports = () => {
             .then(data => {
                 console.log(data)
             })
+        fetch('http://localhost:3000/exports', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newImportItems)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            })
         alert("added successfully!")
         console.log(newImportItems)
     }
