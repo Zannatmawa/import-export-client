@@ -7,9 +7,12 @@ import { auth } from '../../firebase/firebase.init'
 const googleProvider = new GoogleAuthProvider()
 
 const AuthProvider = ({ children }) => {
+    const [mode, setMode] = useState(false)
+
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    const toggleMode = () => setMode(p => !p);
     // console.log(user, loading)
     //for Registaring user 
     const createUser = (email, image, password) => {
@@ -54,7 +57,10 @@ const AuthProvider = ({ children }) => {
         user,
         loading,
         setUser,
-        setLoading
+        setLoading,
+        mode,
+        setMode,
+        toggleMode
 
     }
     return (

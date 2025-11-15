@@ -7,10 +7,10 @@ const Products = ({ product }) => {
     {/* <img src="https://i.ibb.co.com/RkSs1bDj/priscilla-du-preez-dlx-LGIy-2-VU-unsplash.jpg" alt="priscilla-du-preez-dlx-LGIy-2-VU-unsplash" border="0" /> */ }
     return (
         <>
-            {/*   h-[200px]  px-4 pt-4*/}
-            <div className="card my-5 mx-auto lg:w-[400px] md:w-[400px] w-[300px]">
+
+            <div className="card my-5 mx-auto lg:w-[400px] md:w-[350px] w-[300px]">
                 <div className="card-details text-center">
-                    <figure className="image h-auto lg:w-[350px] lg:h-[300px] md:w-[350px] md:h-[300px]">
+                    <figure className="image h-auto lg:w-[350px] lg:h-[300px] md:w-[300px] md:h-[300px]">
                         <img
                             src={product_image}
                             alt="Shoes"

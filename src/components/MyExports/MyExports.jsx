@@ -4,6 +4,9 @@ import Swal from 'sweetalert2'
 import { AuthContext } from '../contexts/AuthContext'
 
 const MyExports = () => {
+    useEffect(() => {
+        document.title = "Import Export Hub | My Exports";
+    }, []);
     const { user } = use(AuthContext)
     const ExportedProducts = useLoaderData()
     const updateModalRef = useRef(null)
@@ -21,6 +24,7 @@ const MyExports = () => {
     }, [user?.email])
 
     const handleDelete = (id) => {
+        console.log(id)
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -31,7 +35,7 @@ const MyExports = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:3000/products/${id}`, {
+                fetch(`http://localhost:3000/exports/${id}`, {
                     method: "DELETE",
                 })
                     .then(res => res.json())
@@ -89,11 +93,11 @@ const MyExports = () => {
     }
 
     return (
-        <div className="overflow-x-auto">
-            <h6>Total:{exports.length}</h6>
+        <div className="overflow-x-auto w-11/12 mx-auto mb-30">
+            <h6 className='mt-5 ml-5'>Total:{exports.length}</h6>
 
             <table className="table">
-                <thead>
+                <thead className='text-gray-400'>
                     <tr>
                         <th>Name and Image</th>
                         <th>Price</th>

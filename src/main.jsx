@@ -16,6 +16,7 @@ import AuthProvider from './components/contexts/AuthProvider.jsx';
 import ProductDetails from './components/ProductDetails/ProductDetails.jsx';
 import PrivateRoute from './components/contexts/PrivateRoute/PrivateRoute.jsx';
 import AuthLayout from './Layouts/AuthLayout.jsx';
+import Search from './components/Search/Search.jsx';
 
 const router = createBrowserRouter([
   {
@@ -33,7 +34,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/my-exports",
-        loader: ({ params }) => fetch(`http://localhost:3000/exports/${params.id}`),
+        // loader: ({ params }) => fetch(`http://localhost:3000/exports/${params.id}`),
         element: <PrivateRoute><MyExports /></PrivateRoute>
       },
       {
@@ -45,7 +46,17 @@ const router = createBrowserRouter([
         path: "/add-exports",
         element: <PrivateRoute> <AddExports /></PrivateRoute>
       },
+      {
+        path: "/my-imports",
+        loader: () => fetch('http://localhost:3000/imports'),
+        element: <PrivateRoute><MyImports /></PrivateRoute>
+      },
+      {
+        path: "/search",
+        loader: () => fetch(`http://localhost:3000/products`),
+        element: <Search />
 
+      },
       {
         path: "/productDetails/:id",
         loader: ({ params }) => fetch(`http://localhost:3000/products/${params.id}`),

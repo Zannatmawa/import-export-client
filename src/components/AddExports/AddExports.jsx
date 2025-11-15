@@ -1,12 +1,14 @@
-import React, { use } from 'react'
+import React, { use, useEffect } from 'react'
 import { AuthContext } from '../contexts/AuthContext';
 
 
 
 
 const AddExports = () => {
+    useEffect(() => {
+        document.title = "Import Export Hub | Add Products";
+    }, []);
     const { user } = use(AuthContext)
-    console.log(user.email)
     const handleExportSubmit = (e) => {
         e.preventDefault();
         const product_name = e.target.product_name.value;
@@ -37,7 +39,6 @@ const AddExports = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
             })
         fetch('http://localhost:3000/exports', {
             method: 'POST',
@@ -48,13 +49,12 @@ const AddExports = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
             })
         alert("added successfully!")
-        console.log(newImportItems)
     }
     return (
-        <div>
+        <div className='w-11/12 mx-auto'>
 
             <div className="card bg-base-100 mx-auto p-5 m-5 w-full max-w-sm shadow-2xl">
                 <h1 className="text-3xl font-bold">Add Exports!</h1>

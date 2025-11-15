@@ -1,17 +1,19 @@
 import React, { use } from 'react'
 import { Link } from 'react-router'
 import { AuthContext } from '../contexts/AuthContext'
-import { FaRegUser } from "react-icons/fa";
+import { FaMoon, FaRegUser, FaSun } from "react-icons/fa";
 
 
 const Navbar = () => {
-    const { user, logOut } = use(AuthContext)
+
+    const { user, logOut, mode, setMode } = use(AuthContext)
     const handleLogOutUser = () => {
         logOut()
             .then()
             .catch()
         alert("logged out")
     }
+
     const links = <>
         <Link className='m-2' to="/">Home</Link>
         <Link className='m-2' to="/all-products">All Products</Link>
@@ -22,8 +24,9 @@ const Navbar = () => {
         </>}
         <Link className='m-2' to="/add-exports">Add Exports</Link>
     </>
+    //     ${mode ? "bg-black text-white" : "bg-base-100 text-black"}
     return (
-        <div className="navbar bg-base-100 shadow-sm">
+        <div className={`navbar  shadow-sm bg-base-100 ${mode ? "bg-black text-white" : "bg-base-100 text-black"}`}>
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -43,9 +46,16 @@ const Navbar = () => {
                     {links}
                 </ul>
             </div>
+
             <div className="navbar-end">
 
-
+                {/* {mode ? <FaMoon /> : <FaSun />} */}
+                <button
+                    onClick={() => setMode(!mode)}
+                    className="px-4 py-2  mr-4"
+                >
+                    {mode ? <FaSun /> : <FaMoon />}
+                </button>
                 {
                     user ? <>
                         <div className='bg-base-600 h-10 rounded-full w-10'>
@@ -59,7 +69,6 @@ const Navbar = () => {
                         </>
                 }
 
-                {/* <Link to="/register" className="btn btn-primary">Register</Link> */}
             </div>
         </div>
     )

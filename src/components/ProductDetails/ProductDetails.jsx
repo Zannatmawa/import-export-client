@@ -8,7 +8,11 @@ const ProductDetails = () => {
     const importModalRef = useRef(null)
     const { _id: productId, product_name, product_image, price, origin_country, rating, available_quantity, created_at } = products;
     const { user } = use(AuthContext)
-    const { btn, setBtn } = useState(false)
+    const { btn, setBtn } = useState(false);
+    const [availble, setAvailable] = useState(available_quantity)
+    console.log(available_quantity)
+
+
     const handleImportModalOpen = () => {
         importModalRef.current.showModal()
     }
@@ -34,7 +38,7 @@ const ProductDetails = () => {
             available_quantity: available_quantity,
             imported_quantity: quantity,
         }
-
+        //
         fetch('http://localhost:3000/imports', {
             method: 'POST',
             headers: {

@@ -4,9 +4,9 @@ import { Link, useNavigate } from 'react-router';
 
 const Register = () => {
     const { createUser, signinWithGoogle, updateUser, user, setUser } = use(AuthContext);
-    const { error, setError } = useState("")
+    const [error, setError] = useState("")
     const [loggedIn, setLoggedIn] = useState(false)
-    console.log(loggedIn)
+    // console.log(loggedIn)
     const navigate = useNavigate();
 
     const handleGoogleSignIn = () => {
@@ -49,31 +49,31 @@ const Register = () => {
         const email = event.target.email.value;
         const password = event.target.password.value;
 
+        const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+        if (!passwordPattern.test(password)) {
+            setError("Password should be at least 6 character with upper and lower case!");
+            return;
+        }
+
         createUser(email, password)
             .then((result) => {
                 const loggedUser = result.user;
-                // const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
-                // ;
-                // if (!passwordPattern) {
-                //     setError("Password should be at least 6 character!");
-                //     return;
-                // }
+
                 updateUser({ displayName: name, photoURL: photo })
                     .then(() => {
-                        setUser({ ...user, displayName: name, photoURL: photo })
-                    })
+                        setUser({ ...user, displayName: name, photoURL: photo });
+                    });
+
                 setLoggedIn(true);
                 navigate("/");
-            })
+            });
 
         const newUser = {
             name,
             photo,
-            email,
+            email
+        };
 
-        }
-
-        //create user in the db with google login
         fetch('http://localhost:3000/users/', {
             method: 'POST',
             headers: {
@@ -83,14 +83,13 @@ const Register = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                console.log(data);
             })
             .catch(err => {
-                setError(err)
+                setError(err);
+            });
+    };
 
-            })
-
-    }
     return (
         <div>
             <div className="card bg-base-100 p-5 m-10 mx-auto w-full max-w-sm shrink-0 shadow-2xl">

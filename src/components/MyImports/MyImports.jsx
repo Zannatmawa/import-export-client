@@ -4,19 +4,19 @@ import Swal from 'sweetalert2'
 import { AuthContext } from '../contexts/AuthContext'
 
 const MyImports = () => {
-    const { user } = use(AuthContext)
+    useEffect(() => {
+        document.title = "Import Export Hub | My Imports";
+    }, []);
+    const { user, mode } = use(AuthContext)
     const importedProducts = useLoaderData()
     const [imports, setImports] = useState([]);
-    console.log(imports)
     const { _id } = importedProducts;
-    console.log(imports)
 
     useEffect(() => {
         if (user?.email) {
             fetch(`http://localhost:3000/imports?email=${user.email}`)
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data)
                     setImports(data)
                 })
         }
@@ -53,11 +53,11 @@ const MyImports = () => {
     }
 
     return (
-        <div className="overflow-x-auto">
-            <h6>Total:{imports.length}</h6>
+        <div className={`overflow-x-auto w-11/12 mx-auto mb-30  ${mode ? "bg-black text-white" : "bg-base-100 text-black"}`}>
+            <h6 className='mt-5 ml-5'> Total:{imports.length}</h6>
             <table className="table">
                 {/* head */}
-                <thead>
+                <thead className='text-gray-400'>
                     <tr>
                         <th>Name and Image</th>
                         <th>Price</th>
@@ -76,7 +76,7 @@ const MyImports = () => {
                             <td>
                                 <div className="flex items-center gap-3">
                                     <div className="avatar">
-                                        <div className="mask mask-squircle h-12 w-12">
+                                        <div className="mask mask-squircle h-12 w-12 ">
                                             <img
                                                 src={product.product_image}
                                                 alt="Avatar Tailwind CSS Component" />
@@ -96,7 +96,7 @@ const MyImports = () => {
                                 <button onClick={() => handleRemove(product._id)} className="btn btn-ghost btn-sm">Remove</button>
                             </th>
                             <th>
-                                <Link to={`/productDetails/${product._id}`} className="btn btn-primary btn-sm"> Details</Link>
+                                <Link to={`/productDetails/${product.product}`} className="btn btn-primary btn-sm"> Details</Link>
 
                                 {/* <button className="btn btn-ghost btn-sm"> Details</button> */}
                             </th>
