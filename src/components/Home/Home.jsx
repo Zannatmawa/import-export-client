@@ -3,34 +3,36 @@ import Contact from '../Contact/Contact'
 import OurServices from '../OurServices/OurServices'
 import Search from '../Search/Search'
 import { AuthContext } from '../contexts/AuthContext'
-const latestProducts = fetch("https://import-export-hub-sigma.vercel.app/products").then((res) => res.json())
+import HeroSlider from './HeroSection'
+import StatsSection from './Statistics'
+import CategoriesSection from './CategoriesSection'
+import HighlightsSection from './HighlightSection'
+import { useEffect, useState } from 'react'
 
 const Home = () => {
+    const [latestProducts, setLatestProducts] = useState([])
+    const [loading, setLoading] = useState(true)
 
-    //https://images.unsplash.com/photo-1578575437130-527eed3abbec?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070
+    useEffect(() => {
+        fetch("https://import-export-hub-sigma.vercel.app/products")
+            .then((res) => res.json())
+            .then((data) => {
+                setLatestProducts(data)
+                setLoading(false)
+            })
+            .catch((err) => {
+                console.error(err)
+                setLoading(false)
+            })
+    }, [])
+
+    // if (loading) return <p className="text-center py-10">Loading...</p>
     return (
         <>
-            <div
-                className={`hero min-h-screen `}
-                style={{
-                    backgroundImage:
-                        "url(https://images.unsplash.com/photo-1700114339471-9e90a155d4b7?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070",
-                }}
-            >
-                <div className="hero-overlay"></div>
-                <div className="hero-content text-neutral-content text-center">
-                    <div className="max-w-lg">
-                        <h1 className="mb-5 text-5xl font-bold">Transport & Logistics   </h1>
-                        <h1 className="mb-5 text-5xl font-bold">Digital Solution</h1>
-                        <p className="mb-5">
-                            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-                            quasi. In deleniti eaque aut repudiandae et a id nisi.
-                        </p>
-                        <button className="btn btn-lg btn-primary">Get Started</button>
-                    </div>
-                </div>
-            </div>
-
+            <HeroSlider />
+            <StatsSection />
+            <CategoriesSection />
+            <HighlightsSection />
             <LatestProducts latestProducts={latestProducts} />
             <Contact />
             <OurServices />
