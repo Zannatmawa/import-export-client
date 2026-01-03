@@ -1,16 +1,39 @@
-# React + Vite
+📝 Description
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a static or client-side web app created using HTML, CSS, and (optionally) JavaScript to represent an import-export platform or related UI.
+It demonstrates layout, UI components, and responsive design for product/services presentation and navigation.
+🌐 Live Demo
 
-Currently, two official plugins are available:
+🔗 Live Site:
+https://import-export-app-8fcaa.web.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🛠️ Technologies Used
 
-## React Compiler
+HTML5
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+CSS3
 
-## Expanding the ESLint configuration
+(Optional) JavaScript
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+💡 Key Features
+
+Hero/banner section
+
+Navigation menu
+
+Product or service showcase
+
+Contact or inquiry section
+
+Responsive layout
+screenshots:
+<img width="1883" height="902" alt="image" src="https://github.com/user-attachments/assets/103befc5-8cba-4c97-9861-abfbe47e3e1e" />
+<img width="1881" height="906" alt="image" src="https://github.com/user-attachments/assets/82e36f50-096e-4651-bfe4-afa619c92cad" />
+<img width="1872" height="877" alt="image" src="https://github.com/user-attachments/assets/1f12b25a-bf8d-4632-b46f-f3140ff18945" />
+<img width="1875" height="900" alt="image" src="https://github.com/user-attachments/assets/84fdbdaf-bd72-447d-bc3d-334f6283db6a" />
+<img width="1892" height="538" alt="image" src="https://github.com/user-attachments/assets/8c26cce2-bc41-4a16-b227-56ffb96351fa" />
+
+
+
+
+
