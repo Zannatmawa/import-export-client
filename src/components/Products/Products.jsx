@@ -3,8 +3,6 @@ import { Link } from 'react-router'
 
 const Products = ({ product }) => {
     const { _id, product_name, price, product_image, origin_country, rating, available_quantity } = product
-    //  w-86 shadow-sm  bg-base-100 border-2
-    {/* <img src="https://i.ibb.co.com/RkSs1bDj/priscilla-du-preez-dlx-LGIy-2-VU-unsplash.jpg" alt="priscilla-du-preez-dlx-LGIy-2-VU-unsplash" border="0" /> */ }
     return (
         <>
 
@@ -14,7 +12,7 @@ const Products = ({ product }) => {
                         <img
                             src={product_image}
                             alt="Shoes"
-                            className="rounded-xl" />
+                            className="rounded-xl w-86 h-48  object-cover hover:scale-105 hover:shadow-lg" />
                     </figure>
                     <div className='flex justify-between mb-5'>
                         <p className="font-bold text-md">{product_name}</p>
@@ -29,17 +27,6 @@ const Products = ({ product }) => {
                 <button className="card-button"><Link to={`/productDetails/${_id}`} className="btn btn-primary w-full">See Details</Link></button>
             </div>
 
-
-            {/* <div className="card ">
-                
-                <div className="card-body text-center">
-                    <h2 className="card-title  text-sm">{product_name}</h2>
-                    <h2 className="card-title  text-sm">{price}</h2>
-                    <div className="card-actions">
-                        <Link to={`/productDetails/${_id}`} className="btn btn-primary w-full">See Details</Link>
-                    </div>
-                </div>
-            </div> */}
         </>
     )
 }

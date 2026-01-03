@@ -1,13 +1,13 @@
 import LatestProducts from '../LatestProducts/LatestProducts'
 import Contact from '../Contact/Contact'
-import OurServices from '../OurServices/OurServices'
-import Search from '../Search/Search'
 import { AuthContext } from '../contexts/AuthContext'
 import HeroSlider from './HeroSection'
 import StatsSection from './Statistics'
 import CategoriesSection from './CategoriesSection'
 import HighlightsSection from './HighlightSection'
 import { useEffect, useState } from 'react'
+import TestimonialsSection from './Testimonials'
+import NewsletterSection from './NewsLetter'
 
 const Home = () => {
     const [latestProducts, setLatestProducts] = useState([])
@@ -26,17 +26,18 @@ const Home = () => {
             })
     }, [])
 
-    // if (loading) return <p className="text-center py-10">Loading...</p>
+    if (loading) return <p className="text-center py-10">Loading...</p>
     return (
-        <>
+        <div>
             <HeroSlider />
             <StatsSection />
-            <CategoriesSection />
-            <HighlightsSection />
+            {/* <CategoriesSection /> */}
             <LatestProducts latestProducts={latestProducts} />
+            <HighlightsSection />
+            <TestimonialsSection />
+            <NewsletterSection />
             <Contact />
-            <OurServices />
-        </>
+        </div>
     )
 }
 

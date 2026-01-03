@@ -17,6 +17,7 @@ const Navbar = () => {
     const links = <>
         <Link className='m-2' to="/">Home</Link>
         <Link className='m-2' to="/all-products">All Products</Link>
+        <Link className='m-2' to="/services">Services</Link>
 
         {user && <>
             <Link className='m-2' to="/my-exports">My Exports</Link>

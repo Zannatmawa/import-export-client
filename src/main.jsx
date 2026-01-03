@@ -17,6 +17,7 @@ import ProductDetails from './components/ProductDetails/ProductDetails.jsx';
 import PrivateRoute from './components/contexts/PrivateRoute/PrivateRoute.jsx';
 import AuthLayout from './Layouts/AuthLayout.jsx';
 import Search from './components/Search/Search.jsx';
+import OurServices from './components/OurServices/OurServices.jsx';
 // const URL= import.meta.env.VITE_API_URL
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />
+      },
+      {
+        path: "/services",
+        element: <OurServices />
       },
       {
         path: "/all-products",
