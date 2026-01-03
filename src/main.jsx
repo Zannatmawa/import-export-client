@@ -17,7 +17,7 @@ import ProductDetails from './components/ProductDetails/ProductDetails.jsx';
 import PrivateRoute from './components/contexts/PrivateRoute/PrivateRoute.jsx';
 import AuthLayout from './Layouts/AuthLayout.jsx';
 import Search from './components/Search/Search.jsx';
-
+// const URL= import.meta.env.VITE_API_URL
 const router = createBrowserRouter([
   {
     path: "/",
@@ -29,17 +29,16 @@ const router = createBrowserRouter([
       },
       {
         path: "/all-products",
-        loader: () => fetch(`http://localhost:3000/products`),
+        loader: () => fetch(`https://import-export-hub-sigma.vercel.app/products`),
         element: <AllProducts />
       },
       {
         path: "/my-exports",
-        // loader: ({ params }) => fetch(`http://localhost:3000/exports/${params.id}`),
         element: <PrivateRoute><MyExports /></PrivateRoute>
       },
       {
         path: "/my-imports",
-        loader: () => fetch('http://localhost:3000/imports'),
+        loader: () => fetch('https://import-export-hub-sigma.vercel.app/imports'),
         element: <PrivateRoute><MyImports /></PrivateRoute>
       },
       {
@@ -48,18 +47,18 @@ const router = createBrowserRouter([
       },
       {
         path: "/my-imports",
-        loader: () => fetch('http://localhost:3000/imports'),
+        loader: () => fetch('https://import-export-hub-sigma.vercel.app/imports'),
         element: <PrivateRoute><MyImports /></PrivateRoute>
       },
       {
         path: "/search",
-        loader: () => fetch(`http://localhost:3000/products`),
+        loader: () => fetch(`https://import-export-hub-sigma.vercel.app/products`),
         element: <Search />
 
       },
       {
         path: "/productDetails/:id",
-        loader: ({ params }) => fetch(`http://localhost:3000/products/${params.id}`),
+        loader: ({ params }) => fetch(`https://import-export-hub-sigma.vercel.app/products/${params.id}`),
         element: <PrivateRoute><ProductDetails /></PrivateRoute>
       }
 

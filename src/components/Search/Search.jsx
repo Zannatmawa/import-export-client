@@ -12,8 +12,8 @@ const Search = () => {
 
     const apps = allProducts.filter((app) =>
         (app.product_name || "").toLowerCase().includes(search.toLowerCase())
-    ).map((app) => (
-        <div className="card my-5 mx-auto lg:w-[400px] md:w-[350px] w-[300px]">
+    ).map((app, index) => (
+        <div key={index} className="card my-5 mx-auto lg:w-[400px] md:w-[350px] w-[300px]">
             <div className="card-details text-center">
                 <figure className="image h-auto lg:w-[350px] lg:h-[300px] md:w-[300px] md:h-[300px]">
                     <img

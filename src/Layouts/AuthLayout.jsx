@@ -9,7 +9,7 @@ const AuthLayout = () => {
     }, []);
     return (
         //  className='w-11/12 mx-auto py-4'
-        <div className='bg-base-200 min-h-screen' >
+        <div className='bg-base-200 text-black min-h-screen' >
             <header>
                 <Navbar />
             </header>

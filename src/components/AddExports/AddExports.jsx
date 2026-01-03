@@ -30,7 +30,7 @@ const AddExports = () => {
             exporter_email: user?.email
         }
 
-        fetch('http://localhost:3000/products', {
+        fetch('https://import-export-hub-sigma.vercel.app/products', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -40,7 +40,7 @@ const AddExports = () => {
             .then(res => res.json())
             .then(data => {
             })
-        fetch('http://localhost:3000/exports', {
+        fetch('https://import-export-hub-sigma.vercel.app/exports', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -2,11 +2,13 @@ import React, { use, useEffect, useRef, useState } from 'react'
 import { Link, useLoaderData } from 'react-router'
 import Swal from 'sweetalert2'
 import { AuthContext } from '../contexts/AuthContext'
+import useAxios from '../../hooks/useAxios'
 
 const MyExports = () => {
     useEffect(() => {
         document.title = "Import Export Hub | My Exports";
     }, []);
+    const axiosInstance = useAxios()
     const { user } = use(AuthContext)
     const ExportedProducts = useLoaderData()
     const updateModalRef = useRef(null)
@@ -15,7 +17,7 @@ const MyExports = () => {
 
     useEffect(() => {
         if (user?.email) {
-            fetch(`http://localhost:3000/exports?email=${user.email}`)
+            fetch(`https://import-export-hub-sigma.vercel.app/exports?email=${user.email}`)
                 .then(res => res.json())
                 .then(data => {
                     setExports(data)
@@ -35,7 +37,7 @@ const MyExports = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:3000/exports/${id}`, {
+                fetch(`https://import-export-hub-sigma.vercel.app/exports/${id}`, {
                     method: "DELETE",
                 })
                     .then(res => res.json())
@@ -73,23 +75,53 @@ const MyExports = () => {
             updated_at: new Date()
         }
 
-        fetch(`http://localhost:3000/exports/${id}`, {
-            method: "PATCH",
-            headers: {
-                "content-type": "application/json",
-            },
-            body: JSON.stringify(updateProduct),
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.modifiedCount > 0 || data.acknowledged) {
-                    alert("Updated successfully!")
+        // fetch(`https://import-export-hub-sigma.vercel.app/exports/${id}`, {
+        //     method: "PATCH",
+        //     headers: {
+        //         "content-type": "application/json",
+        //     },
+        //     body: JSON.stringify(updateProduct),
+        // })
+        //     .then((res) => res.json())
+        //     .then((data) => {
+        //         if (data.modifiedCount > 0 || data.acknowledged) {
+        //             alert("Updated successfully!")
+        //             setExports(prev =>
+        //                 prev.map(p => p._id === id ? { ...p, ...updateProduct } : p)
+        //             )
+        //             updateModalRef.current.close()
+        //         }
+        //     })
+
+        // axiosInstance.patch(`/exports/${id}`, updateProduct)
+        //     .then(data => {
+        //         console.log(data.data);
+        //     })
+        //     .then((data) => {
+        //         if (data.modifiedCount > 0 || data.acknowledged) {
+        //             alert("Updated successfully!")
+        //             setExports(prev =>
+        //                 prev.map(p => p._id === id ? { ...p, ...updateProduct } : p)
+        //             )
+        //             updateModalRef.current.close()
+        //         }
+        //     })
+        axiosInstance.patch(`/exports/${id}`, updateProduct)
+            .then((res) => {
+                console.log(res.data);
+
+                if (res.data.modifiedCount > 0 || res.data.acknowledged) {
+                    alert("Updated successfully!");
+
                     setExports(prev =>
                         prev.map(p => p._id === id ? { ...p, ...updateProduct } : p)
-                    )
-                    updateModalRef.current.close()
+                    );
+
+                    updateModalRef.current.close();
                 }
             })
+            .catch(err => console.error(err));
+
     }
 
     return (

@@ -23,7 +23,7 @@ const Register = () => {
 
                 }
                 //create user in the db with google login
-                fetch('http://localhost:3000/users/', {
+                fetch('https://import-export-hub-sigma.vercel.app/users/', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -74,7 +74,7 @@ const Register = () => {
             email
         };
 
-        fetch('http://localhost:3000/users/', {
+        fetch('https://import-export-hub-sigma.vercel.app/users/', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

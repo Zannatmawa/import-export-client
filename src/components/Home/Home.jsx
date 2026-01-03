@@ -3,7 +3,7 @@ import Contact from '../Contact/Contact'
 import OurServices from '../OurServices/OurServices'
 import Search from '../Search/Search'
 import { AuthContext } from '../contexts/AuthContext'
-const latestProducts = fetch("http://localhost:3000/products").then((res) => res.json())
+const latestProducts = fetch("https://import-export-hub-sigma.vercel.app/products").then((res) => res.json())
 
 const Home = () => {
 

@@ -14,7 +14,7 @@ const MyImports = () => {
 
     useEffect(() => {
         if (user?.email) {
-            fetch(`http://localhost:3000/imports?email=${user.email}`)
+            fetch(`https://import-export-hub-sigma.vercel.app/imports?email=${user.email}`)
                 .then(res => res.json())
                 .then(data => {
                     setImports(data)
@@ -33,7 +33,7 @@ const MyImports = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:3000/imports/${id}`, {
+                fetch(`https://import-export-hub-sigma.vercel.app/imports/${id}`, {
                     method: "DELETE",
                 })
                     .then(res => res.json())

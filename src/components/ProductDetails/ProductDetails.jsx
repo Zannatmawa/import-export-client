@@ -39,7 +39,7 @@ const ProductDetails = () => {
             imported_quantity: quantity,
         }
         //
-        fetch('http://localhost:3000/imports', {
+        fetch('https://import-export-hub-sigma.vercel.app/imports', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

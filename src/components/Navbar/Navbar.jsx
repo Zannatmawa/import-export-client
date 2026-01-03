@@ -65,7 +65,7 @@ const Navbar = () => {
                     </> :
                         <>
                             <FaRegUser />
-                            <Link to="/auth/login" className="btn btn-primary">Login</Link>
+                            <Link to="/auth/login" className="btn btn-primary ml-4">Login</Link>
                         </>
                 }
 
