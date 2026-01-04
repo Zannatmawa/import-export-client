@@ -20,6 +20,9 @@ import AuthLayout from './Layouts/AuthLayout.jsx';
 import Search from './components/Search/Search.jsx';
 import OurServices from './components/OurServices/OurServices.jsx';
 import Dashboard from './components/Dashboard/Dashboard.jsx';
+import PrivacyTerms from './components/Privacy/Privacy.jsx';
+import { Toaster } from "react-hot-toast"
+
 // const URL= import.meta.env.VITE_API_URL
 const router = createBrowserRouter([
   {
@@ -37,6 +40,10 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />
+      },
+      {
+        path: "/privacy",
+        element: <PrivacyTerms />
       },
       {
         path: "/all-products",
@@ -90,13 +97,21 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <PrivateRoute><Dashboard /></PrivateRoute>
-  }
+    element: <PrivateRoute><Dashboard /></PrivateRoute>,
+    children: [
+      {
+        path: "/dashboard/my-imports",
+        loader: () => fetch('https://import-export-hub-sigma.vercel.app/imports'),
+        element: <PrivateRoute><MyImports /></PrivateRoute>
+      },
+    ]
+  },
 ]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
+      <Toaster position="top-right" />
       <RouterProvider router={router} />
     </AuthProvider>
   </StrictMode>,

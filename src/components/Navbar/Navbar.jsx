@@ -2,16 +2,23 @@ import React, { use } from 'react'
 import { Link } from 'react-router'
 import { AuthContext } from '../contexts/AuthContext'
 import { FaMoon, FaRegUser, FaSun } from "react-icons/fa";
-
+import toast from "react-hot-toast"
+// import { ship } from '../../assets/Ship.gif'
+//maliha@gmail.com
+//@Mawa733
 
 const Navbar = () => {
 
     const { user, logOut, mode, setMode } = use(AuthContext)
+
     const handleLogOutUser = () => {
         logOut()
-            .then()
-            .catch()
-        alert("logged out")
+            .then(() => {
+                toast.success("Logged out successfully")
+            })
+            .catch(() => {
+                toast.error("Logout failed")
+            })
     }
 
     const links = <>
@@ -19,6 +26,7 @@ const Navbar = () => {
         <Link className='m-2' to="/all-products">All Products</Link>
         <Link className='m-2' to="/services">Services</Link>
         <Link className='m-2' to="/contact">Contact us</Link>
+        <Link className='m-2' to="/privacy">Privacy & Terms</Link>
 
 
 
@@ -43,7 +51,10 @@ const Navbar = () => {
                         {links}
                     </ul>
                 </div>
-                <Link to="/" className="btn btn-ghost text-xl">IO HUB</Link>
+                <Link to="/" className="btn btn-ghost text-xl">
+                    {/* <image src={ship} alt="logo" className="w-10 h-10 mr-2" />  */}
+                    Import Export Hub
+                </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -62,7 +73,7 @@ const Navbar = () => {
                 </button>
                 {
                     user ? <>
-                        <div className="dropdown">
+                        <div className="dropdown mr-20">
                             {/* Trigger */}
                             <div tabIndex={0} className="btn btn-ghost ">
                                 <div className='bg-base-600 h-10 rounded-full w-10'>
@@ -71,15 +82,15 @@ const Navbar = () => {
                             </div>
 
                             <ul
-                                className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow z-50"
+                                className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-35 p-2 shadow z-50"
                             >
                                 <Link className='m-2'>Profile</Link>
                                 <Link className='m-2' to="/dashboard">Dashboard</Link>
-                                <Link className='m-2'>Logout</Link>
+                                <Link onClick={handleLogOutUser} to="/auth/login" className='m-2'>Sign Out</Link>
+
                             </ul>
                         </div>
 
-                        <Link onClick={handleLogOutUser} to="/auth/login" className="btn btn-primary ml-5">Sign Out</Link>
                     </> :
                         <>
                             <FaRegUser />

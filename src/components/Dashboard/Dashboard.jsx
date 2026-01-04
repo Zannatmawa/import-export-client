@@ -1,11 +1,10 @@
 import React, { useState } from "react"
 import ProfilePage from "./Profile/Profile"
 import MyImports from "../MyImports/MyImports"
-import MyExports from "../MyExports/MyExports"
-// import Profile from "./Profile"
-// import Orders from "./Orders"
-// import Wishlist from "./Wishlist"
-// import Settings from "./Settings"
+// import MyExports from "../MyExports/MyExports"
+import { Link } from "react-router"
+// import { ship } from '../../assets/Ship.gif'
+
 
 const Dashboard = () => {
     const [activeTab, setActiveTab] = useState("profile")
@@ -14,8 +13,18 @@ const Dashboard = () => {
         <div className="flex min-h-screen bg-gray-100">
             {/* Sidebar */}
             <aside className="w-64 bg-white shadow-md p-6">
+                <Link to="/" className="btn btn-ghost text-xl">
+                    {/* <image src={ship} alt="logo" className="w-10 h-10 mr-2" />  */}
+                    Import Export Hub
+                </Link>
                 <h2 className="text-xl font-bold mb-6">User Dashboard</h2>
                 <ul className="space-y-3">
+                    <li
+                        className={`cursor-pointer ${activeTab === "profile" && "font-bold text-indigo-600"}`}
+                        onClick={() => setActiveTab("home")}
+                    >
+                        Home
+                    </li>
                     <li
                         className={`cursor-pointer ${activeTab === "profile" && "font-bold text-indigo-600"}`}
                         onClick={() => setActiveTab("profile")}
@@ -23,13 +32,13 @@ const Dashboard = () => {
                         Profile
                     </li>
                     <li
-                        className={`cursor-pointer ${activeTab === "orders" && "font-bold text-indigo-600"}`}
+                        className={`cursor-pointer ${activeTab === "exports" && "font-bold text-indigo-600"}`}
                         onClick={() => setActiveTab("exports")}
                     >
                         My Exports
                     </li>
                     <li
-                        className={`cursor-pointer ${activeTab === "wishlist" && "font-bold text-indigo-600"}`}
+                        className={`cursor-pointer ${activeTab === "imports" && "font-bold text-indigo-600"}`}
                         onClick={() => setActiveTab("imports")}
                     >
                         My Imports
@@ -47,7 +56,8 @@ const Dashboard = () => {
             <main className="flex-1 p-8">
                 {activeTab === "profile" && <ProfilePage />}
                 {activeTab === "imports" && <MyImports />}
-                {activeTab === "exports" && <MyExports />}
+                {activeTab === "home" && <HomePage />}
+                {/* {activeTab === "exports" && <MyExports />} */}
                 {activeTab === "settings" && <Settings />}
             </main>
         </div>

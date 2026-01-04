@@ -12,7 +12,6 @@ const AllProducts = () => {
     return (
         <div className=''>
             <Search />
-
         </div>
 
     )
