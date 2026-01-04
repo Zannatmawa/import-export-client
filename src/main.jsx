@@ -64,7 +64,7 @@ const router = createBrowserRouter([
       {
         path: "/productDetails/:id",
         loader: ({ params }) => fetch(`https://import-export-hub-sigma.vercel.app/products/${params.id}`),
-        element: <PrivateRoute><ProductDetails /></PrivateRoute>
+        element: <ProductDetails />
       }
 
     ]

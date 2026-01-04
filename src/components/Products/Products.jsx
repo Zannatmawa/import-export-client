@@ -1,37 +1,41 @@
-import React from 'react'
-import { Link } from 'react-router'
+import { Link } from "react-router"
 
 const Products = ({ product }) => {
     const { _id, product_name, price, product_image, origin_country, rating, available_quantity } = product
     return (
-        <>
+        <div className="bg-white rounded-xl shadow-sm hover:shadow-lg hover:scale-105 transition-transform overflow-hidden h-full">
+            <figure className="h-[220px] w-full">
+                <img
+                    src={product_image}
+                    alt={product_name}
+                    className="w-full h-full object-cover"
+                />
+            </figure>
 
-            <div className="card my-5 mx-auto lg:w-[400px] md:w-[350px] w-[300px]">
-                <div className="card-details text-center">
-                    <figure className="image h-auto lg:w-[350px] lg:h-[300px] md:w-[300px] md:h-[300px]">
-                        <img
-                            src={product_image}
-                            alt="Shoes"
-                            className="rounded-xl w-86 h-48  object-cover hover:scale-105 hover:shadow-lg" />
-                    </figure>
-                    <div className='flex justify-between mb-5'>
-                        <p className="font-bold text-md">{product_name}</p>
-                        <p className="font-bold text-md">{price}</p>
+            <div className="p-4 flex flex-col justify-between h-[220px]">
+                <div>
+                    <div className="flex justify-between mb-3">
+                        <p className="font-semibold text-sm line-clamp-1">{product_name}</p>
+                        <p className="font-semibold text-sm">{price}</p>
                     </div>
-                    <div className='flex'>
-                        <div className="badge badge-outline badge-primary mr-1">{origin_country}</div>
-                        <div className="badge badge-outline badge-primary mr-1">{rating}</div>
-                        <div className="badge badge-outline badge-primary">{available_quantity}</div>
+
+                    <div className="flex flex-wrap gap-2 mb-4">
+                        <span className="badge badge-outline badge-primary">{origin_country}</span>
+                        <span className="badge badge-outline badge-primary">{rating}</span>
+                        <span className="badge badge-outline badge-primary">{available_quantity}</span>
                     </div>
                 </div>
-                <button className="card-button"><Link to={`/productDetails/${_id}`} className="btn btn-primary w-full">See Details</Link></button>
-            </div>
 
-        </>
+                <Link
+                    to={`/productDetails/${_id}`}
+                    product={product}
+                    className="btn btn-primary w-full mt-auto"
+                >
+                    See Details
+                </Link>
+            </div>
+        </div>
     )
 }
 
 export default Products
-
-
-

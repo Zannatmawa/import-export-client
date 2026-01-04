@@ -4,13 +4,12 @@ import { AuthContext } from '../contexts/AuthContext';
 import Swal from 'sweetalert2';
 
 const ProductDetails = () => {
-    const products = useLoaderData()
+    const products = useLoaderData();
     const importModalRef = useRef(null)
     const { _id: productId, product_name, product_image, price, origin_country, rating, available_quantity, created_at } = products;
     const { user } = use(AuthContext)
     const { btn, setBtn } = useState(false);
     const [availble, setAvailable] = useState(available_quantity)
-    console.log(available_quantity)
 
 
     const handleImportModalOpen = () => {
@@ -21,7 +20,6 @@ const ProductDetails = () => {
         const name = e.target.name.value;
         const email = e.target.email.value;
         const quantity = e.target.quantity.value;
-        // console.log(productId, name, email, quantity);
 
         if (available_quantity < quantity) {
             alert("Not availble")
