@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import HomeLayout from './Layouts/HomeLayout.jsx';
 import Home from './components/Home/Home.jsx';
 import LatestProducts from './components/LatestProducts/LatestProducts.jsx';
+import Contact from './components/Contact/Contact.jsx';
 import AllProducts from './components/AllProducts/AllProducts.jsx';
 import MyExports from './components/MyExports/MyExports.jsx';
 import MyImports from './components/MyImports/MyImports.jsx';
@@ -18,6 +19,7 @@ import PrivateRoute from './components/contexts/PrivateRoute/PrivateRoute.jsx';
 import AuthLayout from './Layouts/AuthLayout.jsx';
 import Search from './components/Search/Search.jsx';
 import OurServices from './components/OurServices/OurServices.jsx';
+import Dashboard from './components/Dashboard/Dashboard.jsx';
 // const URL= import.meta.env.VITE_API_URL
 const router = createBrowserRouter([
   {
@@ -31,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "/services",
         element: <OurServices />
+      },
+      {
+        path: "/contact",
+        element: <Contact />
       },
       {
         path: "/all-products",
@@ -65,8 +71,7 @@ const router = createBrowserRouter([
         path: "/productDetails/:id",
         loader: ({ params }) => fetch(`https://import-export-hub-sigma.vercel.app/products/${params.id}`),
         element: <ProductDetails />
-      }
-
+      },
     ]
   },
   {
@@ -83,6 +88,10 @@ const router = createBrowserRouter([
 
     ]
   },
+  {
+    path: "/dashboard",
+    element: <PrivateRoute><Dashboard /></PrivateRoute>
+  }
 ]);
 
 createRoot(document.getElementById('root')).render(

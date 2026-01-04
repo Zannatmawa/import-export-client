@@ -1,5 +1,4 @@
 import LatestProducts from '../LatestProducts/LatestProducts'
-import Contact from '../Contact/Contact'
 import { AuthContext } from '../contexts/AuthContext'
 import HeroSlider from './HeroSection'
 import StatsSection from './Statistics'
@@ -9,6 +8,7 @@ import { useEffect, useState } from 'react'
 import TestimonialsSection from './Testimonials'
 import NewsletterSection from './NewsLetter'
 import ProductSkeleton from './ProductsSkeleton'
+import FAQSection from './FaqSection'
 
 const Home = () => {
 
@@ -50,11 +50,11 @@ const Home = () => {
             <HeroSlider />
             <StatsSection />
             {/* <CategoriesSection /> */}
-            <LatestProducts latestProducts={latestProducts} />
             <HighlightsSection />
+            <LatestProducts latestProducts={latestProducts} />
             <TestimonialsSection />
             <NewsletterSection />
-            <Contact />
+            <FAQSection />
         </div>
     )
 }

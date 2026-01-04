@@ -18,6 +18,9 @@ const Navbar = () => {
         <Link className='m-2' to="/">Home</Link>
         <Link className='m-2' to="/all-products">All Products</Link>
         <Link className='m-2' to="/services">Services</Link>
+        <Link className='m-2' to="/contact">Contact us</Link>
+
+
 
         {user && <>
             <Link className='m-2' to="/my-exports">My Exports</Link>
@@ -59,9 +62,23 @@ const Navbar = () => {
                 </button>
                 {
                     user ? <>
-                        <div className='bg-base-600 h-10 rounded-full w-10'>
-                            <img className='rounded-full' src={user?.photoURL} alt="" />
+                        <div className="dropdown">
+                            {/* Trigger */}
+                            <div tabIndex={0} className="btn btn-ghost ">
+                                <div className='bg-base-600 h-10 rounded-full w-10'>
+                                    <img className='rounded-full' src={user?.photoURL} alt="" />
+                                </div>
+                            </div>
+
+                            <ul
+                                className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow z-50"
+                            >
+                                <Link className='m-2'>Profile</Link>
+                                <Link className='m-2' to="/dashboard">Dashboard</Link>
+                                <Link className='m-2'>Logout</Link>
+                            </ul>
                         </div>
+
                         <Link onClick={handleLogOutUser} to="/auth/login" className="btn btn-primary ml-5">Sign Out</Link>
                     </> :
                         <>

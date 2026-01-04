@@ -11,7 +11,7 @@ const NewsletterSection = () => {
     }
 
     return (
-        <section className="py-16 bg-[#374ea9]">
+        <section className="py-16 bg-[#4F46E5]">
             <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -37,7 +37,7 @@ const NewsletterSection = () => {
                     />
                     <motion.button
                         whileHover={{ scale: 1.05, backgroundColor: "#2563eb" }}
-                        className="px-6 py-3 rounded-lg bg-blue-500 font-semibold text-white hover:bg-blue-600 transition-colors"
+                        className="px-6 py-3 rounded-lg bg-gray-500 font-semibold text-white hover:bg-gray-600 transition-colors"
                         type="submit"
                     >
                         Subscribe

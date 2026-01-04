@@ -23,7 +23,7 @@ const testimonials = [
 
 const TestimonialsSection = () => {
     return (
-        <section className="py-16 bg-gray-50">
+        <section className="py-16 bg-gray-50 my-10">
             <h2 className="text-3xl font-bold text-center mb-12">What Our Users Say</h2>
             <div className="max-w-7xl mx-auto px-6 grid gap-8 sm:grid-cols-1 md:grid-cols-3">
                 {testimonials.map((testi, i) => (

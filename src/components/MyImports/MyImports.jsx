@@ -97,8 +97,6 @@ const MyImports = () => {
                             </th>
                             <th>
                                 <Link to={`/productDetails/${product.product}`} className="btn btn-primary btn-sm"> Details</Link>
-
-                                {/* <button className="btn btn-ghost btn-sm"> Details</button> */}
                             </th>
                         </tr>
 

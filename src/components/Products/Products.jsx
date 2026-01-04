@@ -29,7 +29,7 @@ const Products = ({ product }) => {
                 <Link
                     to={`/productDetails/${_id}`}
                     product={product}
-                    className="btn btn-primary w-full mt-auto"
+                    className="btn btn-secondary w-full mt-auto"
                 >
                     See Details
                 </Link>
